@@ -31,3 +31,4 @@ for alumno in estudiantes:
 
 print("---------------------------------------")
 print("¡Proceso de evaluación terminado con éxito!")
+print("puedo escribir dentro de los []")
