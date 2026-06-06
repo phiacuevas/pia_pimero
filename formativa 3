@@ -1,0 +1,78 @@
+#Variables iniciales
+montoTotal = 0
+descuentoAplicado = 0
+roll1=0
+roll2=0
+roll3=0
+roll4=0
+optMenu=0
+#Menu principal
+#4 opciones de producto + 1x de cierre 
+print("Bienvenido")
+while optMenu!=5:
+    print("Ingrese producto que desea: ")
+    print("1.- PikaRoll $4500") 
+    print("2.- OtaRoll $5000") 
+    print("3.- OctoRoll $5200") 
+    print("4.- UnagiRoll $4800") 
+    print("5.- Completar Pedido")
+    try:
+        optMenu = int(input(""))
+    except ValueError:
+        print("Debe ingresar un valor numerico!")
+    else:
+        match optMenu:
+            case 1:
+                montoTotal+=4500
+                roll1+=1
+            case 2:
+                montoTotal+=5000
+                roll2+=1
+            case 3:
+                montoTotal+=5200
+                roll3+=1
+            case 4:
+                montoTotal+=4800
+                roll4+=1
+            case 5:
+                optDesc = 0
+                print("¿Posee un descuento?")
+                while optDesc!=1 and optDesc!=2:
+                    try:
+                        optDesc = int(input("1.- Si\n2.- No\n"))
+                    except ValueError:
+                        print("Debe ingresar un valor numerico")
+                    else:
+                        if(optDesc!=1 and optDesc!=2):
+                            print("Debe elegir solo 1 o 2")
+                        else:
+                            codigo=""
+                            if(optDesc==1):
+                                print("Ingrese su codigo de descuento")
+                                print("Si desea volver al menu , Ingrese 'X' ")
+                                while codigo!="soyotaku" and codigo!="X":
+                                    codigo = input("")
+                                    if(codigo=="soyotaku"):
+                                        descuentoAplicado=montoTotal*0.1
+                                        print("Descuento del 10% aplicado")
+                                    elif(codigo=="X"):
+                                        optMenu=0
+                                    else:
+                                        print("Codigo no valido, Debe ingresarlo nuevamente")
+                            #Impresion de boleta
+                            if(codigo!="X"):
+                                print("*"*30)
+                                print(f"TOTAL PRODUCTOS: {roll1+roll2+roll3+roll4}")
+                                print("*"*30)
+                                print(f"PikaRoll: {roll1}")
+                                print(f"OtaRoll: {roll2}")
+                                print(f"OctoRoll: {roll3}")
+                                print(f"UnagiRoll: {roll4}")
+                                print("*"*30)
+                                print(f"Subtotal por pagar: ${montoTotal}")
+                                if(descuentoAplicado>0):
+                                    print(f"Descuento por codigo: ${descuentoAplicado}")
+                                print(f"TOTAL A PAGAR: ${montoTotal-descuentoAplicado}")
+                
+            case _:
+                print("Opcion fuera de rango")
